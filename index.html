@@ -107,7 +107,7 @@
           <!--There are basically two ways to make something happen, when you click an HTML element. This is the first...-->
           <a class="waves-effect waves-light btn-large" onclick="getSomeOtherApiData('random?auth=null')">
             <!--To use google icon font, add a <i> element inside a button link the following way -->
-            <i class="material-icons right">face</i>Public API Random</a>
+              <i class="material-icons right">face</i>Bitcoin statistik</a>
         </div>
       </div>
       <div id="api-component-page-two">
@@ -145,13 +145,14 @@
         <div class="col s12 m6">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">{{API}}</span>
+              <span class="card-title"> Bitcoin statistik
+              </span>
               <p>
                 {{Description}}
                 <ul>
-                  <li>Auth: {{Auth}}</li>
-                  <li>Category: {{Category}}</li>
-                  <li>HTTPS: {{HTTPS}}</li>
+                  Price for one Bitcoin: {{market_price_usd}} $
+              <br>
+                Bitcoins mined: {{n_btc_mined}}
                 </ul>
               </p>
             </div>
@@ -181,15 +182,16 @@
       }).done(function (data) {
         console.log(data);
         $('#api-component-page-one').html(apiTemplate(data));
+      
       });
     }
 
     function getSomeOtherApiData(querystring) {
       $.ajax({
-        url: "https://api.publicapis.org/" + querystring,
+        url: "https://api.blockchain.info/stats",
       }).done(function (data) {
         console.log(data);
-        $('#api-component-page-two').html(apiTemplateTwo(data.entries[0]));
+        $('#api-component-page-two').html(apiTemplateTwo(data));
       });
     }
 
